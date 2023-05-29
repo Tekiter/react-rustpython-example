@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { usePython } from "./python/python";
+import { createPythonVm } from "./python/python";
 
 function Eval() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const python = usePython();
 
-  function run() {
-    if (!python) {
-      throw new Error("Something wrong.");
-    }
-
+  async function run() {
+    const python = await createPythonVm();
     const result = python.eval(input);
 
-    setOutput(result);
+    setOutput(`${result}`);
   }
 
   return (

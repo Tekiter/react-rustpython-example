@@ -21,7 +21,8 @@ export const PythonProvider: FC<PythonProviderProps> = ({ children }) => {
   useEffect(() => {
     let vm: VirtualMachine;
 
-    init(wasmUrl).then(() => {
+    init(wasmUrl).then((a) => {
+      vm = vmStore.init("rust_python_example", false);
       vm = vmStore.init("rust_python_example", false);
       vm.setStdout((str: unknown) => console.log("[PythonOutput]:", str));
 
@@ -43,4 +44,17 @@ export const PythonProvider: FC<PythonProviderProps> = ({ children }) => {
 
 export function usePython() {
   return useContext(PythonContext);
+}
+
+let loaded = false;
+
+export async function createPythonVm() {
+  if (!loaded) {
+    loaded = true;
+    await init(wasmUrl);
+  }
+  const vm = vmStore.init("rust_python_example", false);
+  vm.setStdout(console.log);
+
+  return vm;
 }
