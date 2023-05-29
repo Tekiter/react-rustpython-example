@@ -7,6 +7,10 @@ function Eval() {
 
   async function run() {
     const python = await createPythonVm();
+
+    python.addToScope("hello", "world");
+    python.addToScope("alert", (message: string) => alert(message));
+
     const result = python.eval(input);
 
     setOutput(`${result}`);
