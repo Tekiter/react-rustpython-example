@@ -1,3 +1,4 @@
+import Bridge from "./Bridge";
 import Eval from "./Eval";
 import Exec from "./Exec";
 
@@ -6,6 +7,7 @@ function App() {
     <div>
       <Eval />
       <Exec />
+      <Bridge />
     </div>
   );
 }

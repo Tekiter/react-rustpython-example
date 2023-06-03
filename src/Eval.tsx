@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createPythonVm } from "./python/python";
+import { createPythonVm } from "./python";
 
 function Eval() {
   const [input, setInput] = useState("");

@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { createPythonVm } from "./python/python";
+import { createPythonVm } from "./python";
 
 const Exec: FC = () => {
   const [output, setOutput] = useState("");
